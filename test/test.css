@@ -1,0 +1,108 @@
+/*My Test CSS*/
+/* @ element test*/
+@charset "windows-1251";
+
+@font-face {
+    font-family: Pompadur; /* Имя шрифта */
+    src: url(fonts/pompadur.ttf); /* Путь к файлу со шрифтом */
+}
+
+@import "/style/main.css" screen; /* Стиль для вывода результата на монитор */
+
+@import "/style/palm.css" handheld, print; /* Стиль для печати */
+
+@media screen { /* Стиль для отображения в браузере */
+    BODY {
+     font-family: Arial, Verdana, sans-serif; /* Рубленый шрифт */
+     font-size: 90%; /* Размер шрифта */
+     color: #000080; /* Цвет текста */
+    }
+    H1 {
+     background: #faf0e6; /* Цвет фона под текстом */
+     border: 2px dashed #800000; /* Рамка вокруг заголовка */
+     color: #a0522d; /* Цвет текста */
+     padding: 7px; /* Поля вокруг текста */
+    }
+    H2 {
+     color: #556b2f; /* Цвет текста */
+     margin: 0; /* Убираем отступы */
+    }
+    P {
+     margin-top: 0.5em; /* Отступ сверху */
+    }
+   }
+   @media print { /* Стиль для печати */
+    BODY {
+     font-family: Times, 'Times New Roman', serif; /* Шрифт с засечками */
+    }
+    H1, H2, P {
+     color: #000; /* Черный цвет текста */
+    }
+   }
+/* Normalization tests /*
+*/
+.colors:after{
+    color: #333333;
+      color: #333333;
+      color: #333333;
+      color: #aabbcc;
+    color: #a33acc;
+    background: #efefef;
+}
+.margin .one{
+    margin: 0px;
+}
+.margin .two{
+    margin-left:15px;
+    margin-bottom:10px;
+    margin-right:15px;
+    margin-top:10px;
+}
+.margin .three{
+    margin-left:15px;
+    margin-bottom:16px;
+    margin-right:15px;
+    margin-top:40px;
+}
+.margin .four{
+    margin-left:15px;
+    margin-bottom:16px;
+    margin-right:70px;
+    margin-top:40px;
+}
+.margin .error-test{
+    margin-left:15px;
+    margin-bottom:16px;
+    margin-right:70px;
+    margin-top:40px;
+    margin: 0px;
+}
+
+.margin .error-test2{
+    margin-left:15px;
+    margin-bottom:16px;
+    margin-right:70px;
+    margin-top:40px;
+}
+.margin .error-test2{
+    margin: 20px;
+    margin-top:40px;
+}
+
+a {
+    font-family: Arial, "TrebuchetMS";
+    font-size: 12px;
+    font-weight: bold;
+}
+span {
+    font-family: Arial, "TrebuchetMS";
+    font-size: 12px;
+    font-weight: bold;
+}
+b {
+    font-family: Arial, "TrebuchetMS"
+}
+
+    a.super .very div#fucking .long .css .selector .created .for .test #some-sh i.t-system, .x__x {
+        margin: 0px;
+    }
