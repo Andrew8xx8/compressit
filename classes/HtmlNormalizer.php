@@ -13,26 +13,15 @@ class CI_HtmlNormalizer extends CI_Normalizer{
         $htmlCode = $this->removeCrlf($htmlCode);
         //$cssCode = $this->normalizeMetrics($cssCode);
         //$cssCode = $this->normalizeColors($cssCode);
-        //$cssCode = $this->clearFormatting($cssCode);
+        $htmlCode = $this->clearFormatting($htmlCode);
 
         return $htmlCode;
     }
 
-    public function clearFormatting($cssCode){
-        $cssCode = preg_replace("/:\s+/", ":", $cssCode);
-        $cssCode = preg_replace("/(\s+|\n+|\t+)/", " ", $cssCode);
-        $cssCode = preg_replace("/\s?{\s?/", "{", $cssCode);
-        $cssCode = preg_replace("/\s?;?\s*}\s?/", "}", $cssCode);
-        $cssCode = preg_replace("/,\s+/", ",", $cssCode);
-        $cssCode = preg_replace("/(\s+|\n+|\t+)/", " ", $cssCode);
-        $cssCode = preg_replace("%/(\s+)/%", " ", $cssCode);
+    public function clearFormatting($htmlCode){
+        $htmlCode = preg_replace("/>\s*</", "><", $htmlCode);  
 
-        $cssCode = preg_replace('%@import\\s+url%', '@import url', $cssCode);
-        $cssCode = preg_replace("/@(.*?);\s/", "@$1;", $cssCode);
-
-        $cssCode = $this->addSpaceAfterPseudoElements($cssCode);
-
-        return $cssCode;
+        return $htmlCode;
     }
 
 }

@@ -18,7 +18,8 @@ class CI_HtmlOptimizer extends CI_Optimizer{
      * @param  $cssCode
      * @return string
      */
-    public function optimize($cssCode){
-        return $cssCode;
+    public function optimize($htmlCode){
+
+        return $htmlCode;
     }
 }

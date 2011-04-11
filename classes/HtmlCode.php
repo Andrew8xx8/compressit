@@ -15,6 +15,9 @@ class CI_HtmlCode extends CI_Code{
 	
 	private $noSpaces = true;  // Если true удаляет все лишние пробелы, табуляции и переводы строк
 	private $noComments = true;  // Если true удаляет html комментарии (<!-- -->)
+    private $preStore = array();
+    private $codeStore = array();
+    private $textAreaStore = array();
 
 	public function __construct($noSpaces, $noComments){
         $this->noSpaces = $noSpaces;
@@ -37,6 +40,13 @@ class CI_HtmlCode extends CI_Code{
      * @return string
      */
     public function beforeOptimize($htmlCode){
+        // Извлевкаем всё что внутри тега <pre>
+        $htmlCode = $this->popData("%<pre(.*?)>(.*?)</pre>%Uis", "preTag", $htmlCode, $this->preStore); 
+         // Извлевкаем всё что внутри тега <pre>
+        $htmlCode = $this->popData("%<code(.*?)>(.*?)</pre>%Uis", "codeTag", $htmlCode, $this->codeStore);  
+        // Извлевкаем всё что внутри тега <pre>
+        $htmlCode = $this->popData("%<textarea(.*?)>(.*?)</pre>%Uis", "textareaTag", $htmlCode, $this->textAreaStore);  
+
         return $htmlCode;
     }
 
@@ -50,7 +60,7 @@ class CI_HtmlCode extends CI_Code{
        
         return $htmlCode;
     }
-
+ 
     /**
      * Извлекает все комментарии в css файле, включая конструкции data-uri,
      * во временное хранилище
@@ -59,12 +69,6 @@ class CI_HtmlCode extends CI_Code{
      * @return string
      */
     public function popComments($htmlCode, &$store){
-        /*
-         * Комментаррии CSS
-         * Находим первое вхождение слеш звёздочка, далее берём любой символ или последовательность
-         * слеш звёздочка, пока не встретится последовательность звёздочка слеш. Квантификатор не жадный, по этому
-         * матчит ближайшие открывающие и закгрывающие вхождения оставляя внутри открывающие
-         */
         return $this->popData("/<!--([\\s\\S]*?)-->/i", "commentent", $htmlCode, $store);
     }
 
@@ -79,10 +83,10 @@ class CI_HtmlCode extends CI_Code{
         for($i = 0; $i < count($store[0]); $i++)
             // Оставляем комментарий если это условный тег IE
             if (!$this->delComments || preg_match("%(<!--|<!)\[(.*?)\]%", $store[0][$i])) {
-                $htmlCode = preg_replace("/-=commentent$i=-/", $store[0][$i]." ", $htmlCode);
+                $htmlCode = preg_replace("/-=".md5('commentent')."$i=-/", $store[0][$i]." ", $htmlCode);
             }
             else
-                $htmlCode = preg_replace("/-=commentent$i=-/", "", $htmlCode);
+                $htmlCode = preg_replace("/-=".md5('commentent')."$i=-/", "", $htmlCode);
 
         $htmlCode = preg_replace("/\*\/[\s|\n]+/", "*/", $htmlCode);
 
@@ -112,7 +116,7 @@ class CI_HtmlCode extends CI_Code{
 			if (stripos($tag, "</pre>") !== FALSE) $not_pre_tag = true;		
 		  if ($this->noComments && stripos($tag, "-->") !== FALSE) $f = true;
 		}    
-    $result = preg_replace("/>\s*</", "><", $result); 
+        $result = preg_replace("/>\s*</", "><", $result); 
     //$result = preg_replace("/\s*\"\s*/", "\"", $result); 		
 		return $result;
 	}

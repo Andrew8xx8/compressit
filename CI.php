@@ -10,6 +10,7 @@
  * @copyright Andrew Kulakov (c) 2011
  */
 require_once("classes/Log.php");
+require_once("classes/HtmlCode.php"); 
 
 class CI {
     private static $instance;

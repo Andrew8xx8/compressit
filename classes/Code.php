@@ -133,7 +133,7 @@ abstract class CI_Code extends CI_Cache{
         preg_match_all($popPattern, $code, $store);
 
         for($i = 0; $i < count($store[0]); $i++)
-            $code = str_replace($store[0][$i], "-=".$pushPattern."$i=-", $code);
+            $code = str_replace($store[0][$i], "-=".md5($pushPattern)."$i=-", $code);
 
         return $code;
     }
@@ -141,10 +141,10 @@ abstract class CI_Code extends CI_Cache{
     public function pushData($pushPattern, $code, &$store){
         for($i = 0; $i < count($store[0]); $i++)
             if (!$this->delComments) {
-                $code = preg_replace("/-=".$pushPattern."$i=-/", $store[0][$i]." ", $code);
+                $code = preg_replace("/-=".md5($pushPattern)."$i=-/", $store[0][$i]." ", $code);
             }
             else
-                $code = preg_replace("/-=".$pushPattern."$i=-/", "", $code);
+                $code = preg_replace("/-=".md5($pushPattern)."$i=-/", "", $code);
 
         $code = preg_replace("/\*\/[\s|\n]+/", "*/", $code);
 
