@@ -11,12 +11,18 @@ define('DEBUG',true);
 class CI_Log {
     
     public static function write($message = '', $from=''){
-        if (DEBUG == true) {
+        if (DEBUG == true) {            
             if (!file_exists(CI::getInstance()->getOption("logFile")))
                 file_put_contents(CI::getInstance()->getOption("logFile"), "");
             $logfile = fopen(CI::getInstance()->getOption("logFile"), "at+");
             fwrite($logfile, date("d.m.Y (h:i:s)", time()).": ".$from." - ".$message. "\n");
             fclose($logfile);
         }
-    }
+    }                                                    
+
+    public static function write_dump($object, $from=''){
+        if (DEBUG == true) {            
+            self :: write(var_export($object, true), $from);
+        }
+    } 
 }
