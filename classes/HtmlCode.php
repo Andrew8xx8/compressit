@@ -57,7 +57,11 @@ class CI_HtmlCode extends CI_Code{
      * @return string
      */
     public function afterOptimize($htmlCode){
-       
+        $htmlCode = $this->pushData("preTag", $htmlCode, $this->preStore);      
+        $htmlCode = $this->pushData("codeTag", $htmlCode, $this->codeStore);        
+
+        $htmlCode = $this->pushData("textareaTag", $htmlCode, $this->textAreaStore);        
+//                                  CI_Log :: write_dump($this->textAreaStore, "HtmlCode :: afterOptimize");  
         return $htmlCode;
     }
  
