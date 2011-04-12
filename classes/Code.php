@@ -140,7 +140,7 @@ abstract class CI_Code extends CI_Cache{
 
     public function pushData($pushPattern, $code, &$store){
         for($i = 0; $i < count($store[0]); $i++)
-            if (!$this->delComments) {
+            if (!$this->delComments || $pushPattern != "comments" ) {
                 $code = preg_replace("/-=".md5($pushPattern)."$i=-/", $store[0][$i]." ", $code);
             }
             else
