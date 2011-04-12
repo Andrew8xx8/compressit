@@ -43,9 +43,9 @@ class CI_HtmlCode extends CI_Code{
         // Извлевкаем всё что внутри тега <pre>
         $htmlCode = $this->popData("%<pre(.*?)>(.*?)</pre>%Uis", "preTag", $htmlCode, $this->preStore); 
          // Извлевкаем всё что внутри тега <pre>
-        $htmlCode = $this->popData("%<code(.*?)>(.*?)</pre>%Uis", "codeTag", $htmlCode, $this->codeStore);  
+        $htmlCode = $this->popData("%<code(.*?)>(.*?)</code>%Uis", "codeTag", $htmlCode, $this->codeStore);  
         // Извлевкаем всё что внутри тега <pre>
-        $htmlCode = $this->popData("%<textarea(.*?)>(.*?)</pre>%Uis", "textareaTag", $htmlCode, $this->textAreaStore);  
+        $htmlCode = $this->popData("%<textarea(.*?)>(.*?)</textarea>%Uis", "textareaTag", $htmlCode, $this->textAreaStore); 
 
         return $htmlCode;
     }
