@@ -25,9 +25,10 @@ class CI_JsNormalizer extends CI_Normalizer{
         //      если нет, тогда следующие два символа равны \" или \'(в зависимости от начала)
         //      если нет, тогда просто пропускаем символ
         // 3) Наткнулись на " – конец.    
-        preg_match_all('/(["\'])(\\\\1|.)*?\1/', $jsCode, $strings);
-        var_dump($strings);       
-        
+//        preg_match_all('%(\")(\\\1|.)*?\1%mis', $jsCode, $strings);
+        preg_match_all('%".*?"%', $jsCode, $strings); 
+        print_r($strings);       
+print_r($jsCode); die;        
         $ordered = array(); // Массив со строковыми константами. 
         // Заполняем массив строками. Индекс этого массива - номер 
         // шаблона на который была заменена строка в массиве $jsCode  
