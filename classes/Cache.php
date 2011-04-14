@@ -9,15 +9,11 @@
  * @version
  * @copyright Andrew Kulakov (c) 2011
  */
+require_once('../CI.php');
 require_once('FileReader.php');
+require_once('FileWriter.php');
 
 class CI_Cache {
-    /**
-     * Путь к папке с хранилищем кэша
-     * @var string
-     */
-    private $cacheDir;
-
     /**
      * Хранилище исходного кода
      * @var string
@@ -58,13 +54,20 @@ class CI_Cache {
         return !file_exists($this->getFileName($fileType));
     }
 
+    protected function setCodeToCache($fileType, $code){
+        $filename = $this->getFileName($fileType);
+        if (!CI_FileWriter::writeGZ($filename, $code))
+            CI_FileWriter::write($filename, $code);
+        return $this->getWebFileName($fileType);
+    }
+
     /**
      * Возвращает код из кэша либо false в случае если кода в кэше нет
      *
      * @return string || boolean
      */
     protected function getCodeFromCache($fileType){
-        if (!isNeedUpdate($fileType))
+        if (!$this->isNeedUpdate($fileType))
             return CI_FileReader::read($this->getFileName($fileType));
         else
             return false;
@@ -75,7 +78,12 @@ class CI_Cache {
      * @return string
      */
     private function getFileName($fileType){
-        return $this->cacheDir."/".md5($this->sourceCode).".".$fileType;
+        $cacheDir = CI :: getInstance()->getOption('cache_dir');
+        return $cacheDir."/".md5($this->sourceCode).".".$fileType;
     }
 
+    private function getWebFileName($fileType){
+        $cacheDir = CI :: getInstance()->getOption('web_cache_dir');
+        return $cacheDir."/".md5($this->sourceCode).".".$fileType;
+    }
 }
