@@ -49,7 +49,7 @@ abstract class CI_Code extends CI_Cache{
 
             $code = $this->afterOptimize($code);
         } else
-            $code = $this->getCodeFromCahce($this->getType());
+            $code = $this->getCodeFromCache($this->getType());
 
         $this->optimizedCode = $code;
         
@@ -116,6 +116,10 @@ abstract class CI_Code extends CI_Cache{
      */
     public function getPercent(){
         return ((int)(($this->sizeAfter/$this->sizeBefore)*100));
+    }
+
+    public function sendOptimizedCodeToCache(){
+        return $this->setCodeToCache($this->getType(), $this->sourceCode);
     }
 
     /**
