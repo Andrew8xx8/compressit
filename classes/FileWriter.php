@@ -27,14 +27,14 @@ class CI_FileWriter{
     }
 
     public static function writeGZ($filename, $contents){ 
-        $file = gzopen($filename, "rt");
+        $file = fopen($filename, "wt");
         if ($file !== false){
-            gzwrite($file, $contents);
+            fwrite($file, gzcompress ( $contents, 9 ));
             fclose($file);
             return true;
         } else {
             CI_Log :: write("Ошибка доступа к файлу ".$filename, "FileReader.php");
-            die ("Ошибка доступа к файлу ".$filename);
+            return false;
         }
     }
 }
