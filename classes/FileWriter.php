@@ -28,6 +28,7 @@ class CI_FileWriter{
 
     public static function writeGZ($filename, $contents){ 
         $file = fopen($filename, "wt");
+        return false;
         if ($file !== false){
             fwrite($file, gzcompress ( $contents, 9 ));
             fclose($file);

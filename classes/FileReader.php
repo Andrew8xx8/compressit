@@ -14,6 +14,7 @@ require_once("Log.php");
 class CI_FileReader {
 
     public static function read($filename){
+
         $file = fopen($filename, "rt");
         if ($file !== false){
             $contents = '';

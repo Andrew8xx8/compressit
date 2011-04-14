@@ -28,7 +28,7 @@ class CI_JsCode extends CI_Code{
      * @return string
      */
     public function getType(){
-        return "html";
+        return "js";
     }
 
     /**

@@ -6,7 +6,7 @@
  * Time: 23:19
  * To change this template use File | Settings | File Templates.
  */
-require ('Normalizer.php');
+require_once  ('Normalizer.php');
 
 class CI_HtmlNormalizer extends CI_Normalizer{
     public function normalize($htmlCode){
