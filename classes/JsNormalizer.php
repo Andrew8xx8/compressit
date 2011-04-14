@@ -6,7 +6,7 @@
  * Time: 23:19
  * To change this template use File | Settings | File Templates.
  */
-require ('Normalizer.php');
+require_once ('Normalizer.php');
 
 class CI_JsNormalizer extends CI_Normalizer{
     private function pattern($i) { 
@@ -14,7 +14,7 @@ class CI_JsNormalizer extends CI_Normalizer{
     } 
  
     public function normalize($jsCode){
-        $jsCode = $this->removeCrlf($jsCode);
+ /*       $jsCode = $this->removeCrlf($jsCode);
 
         // Экранируем спецсимволы, что бы не мешались  
         $jsCode =   htmlentities($jsCode);
@@ -36,7 +36,7 @@ print_r($jsCode); die;
           $ordered[$i] = $strings[0][$i]; 
           $jsCode = str_replace($strings[0][$i], $this->pattern($i), $jsCode); 
           $i++; 
-        }    
+        }*/
 /*        
         // Заменяем коменты на пробел     
       //  if ($this->delComments)      
@@ -61,7 +61,7 @@ print_r($jsCode); die;
           $jsCode = preg_replace("/,\s+/", ",", $jsCode); 
   //      }
  */        
-        $jsCode = trim(preg_replace("/\s?;\s?/", ";", $jsCode));         
+      /*  $jsCode = trim(preg_replace("/\s?;\s?/", ";", $jsCode));
         foreach ($ordered as $i => $string) { 
           // возвращаем строки на место 
        //   $jsCode = preg_replace($this->pattern($i), "$string", $jsCode); 
@@ -69,7 +69,7 @@ print_r($jsCode); die;
  
         // Экранируем спецсимволы, что бы не мешались  
         $jsCode = html_entity_decode($jsCode);
-         
+        */ 
         return $jsCode;
     }
 
