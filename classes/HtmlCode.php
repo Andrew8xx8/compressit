@@ -11,8 +11,11 @@ require_once("Code.php");
 require_once("HtmlOptimizer.php");
 require_once("HtmlNormalizer.php");
 
+require_once('JsCode.php');
+require_once('CssCode.php');
+
 class CI_HtmlCode extends CI_Code{
-	
+	 
 	private $noSpaces = true;  // Если true удаляет все лишние пробелы, табуляции и переводы строк
 	private $noComments = true;  // Если true удаляет html комментарии (<!-- -->)
     private $preStore = array();
@@ -41,11 +44,59 @@ class CI_HtmlCode extends CI_Code{
      */
     public function beforeOptimize($htmlCode){
         // Извлевкаем всё что внутри тега <pre>
-        $htmlCode = $this->popData("%<pre(.*?)>(.*?)</pre>%Uis", "preTag", $htmlCode, $this->preStore); 
+        $htmlCode = $this->popData("%<pre(.*?)>(.*?)</pre>%Uis", "preTag", $htmlCode, $this->preStore);
          // Извлевкаем всё что внутри тега <pre>
-        $htmlCode = $this->popData("%<code(.*?)>(.*?)</code>%Uis", "codeTag", $htmlCode, $this->codeStore);  
+        $htmlCode = $this->popData("%<code(.*?)>(.*?)</code>%Uis", "codeTag", $htmlCode, $this->codeStore);
         // Извлевкаем всё что внутри тега <pre>
-        $htmlCode = $this->popData("%<textarea(.*?)>(.*?)</textarea>%Uis", "textareaTag", $htmlCode, $this->textAreaStore); 
+        $htmlCode = $this->popData("%<textarea(.*?)>(.*?)</textarea>%Uis", "textareaTag", $htmlCode, $this->textAreaStore);
+
+        $htmlCode = $this->optimizeJs($htmlCode);
+
+        $htmlCode = $this->optimizeCss($htmlCode);
+
+        return $htmlCode;
+    }
+
+    private function optimizeJs($htmlCode){
+        $jsCode = new CI_JsCode(true, true);
+
+        preg_match_all("%<script.*?src=\"(.*?)\".*?>(.*?)</script>%is", $htmlCode, $jsScripts);
+        foreach($jsScripts[1] as $script)
+            $jsCode->addFile($script);
+        $htmlCode = preg_replace("%<script.*?src=\"(.*?)\".*?>(.*?)</script>%is", "", $htmlCode);
+
+        preg_match_all("%<script(.*?)>(.*?)</script>%is", $htmlCode, $jsScripts);
+        foreach($jsScripts[2] as $script)
+            $jsCode->addCode($script);
+        $htmlCode = preg_replace("%<script(.*?)>(.*?)</script>%is", "", $htmlCode);
+
+        $jsCode->optimizeCode();
+        $js = $jsCode->sendOptimizedCodeToCache();
+        $htmlCode = preg_replace("%(</head>)%is", "<script src=\"$js\"></script>$1",$htmlCode);
+        //$js =$jsCode->getOptimizedCode();
+
+        //$this->setCodeToCache($jsCode->getType(), $js);
+        
+        return $htmlCode;
+    }
+
+    private function optimizeCss($htmlCode){
+        $cssCode = new CI_CssCode(true, 0);
+
+        preg_match_all("%<style(.*?)>(.*?)</style>%is", $htmlCode, $cssStyles);
+        foreach($cssStyles[2] as $style)
+           $cssCode->addCode($style);
+        $htmlCode = preg_replace("%<style(.*?)>(.*?)</style>%is", "", $htmlCode);
+
+        preg_match_all("%<link.*?(href=\"(.*?)\")?.*?(rel=\"stylesheet\").*?(href=\"(.*?)\").*?>%is", $htmlCode, $cssStyles);
+        //foreach($cssStyles[5] as $style)
+//            $cssCode->addFile($style);
+        $htmlCode = preg_replace("%<link.*?rel=\"stylesheet\".*?>%is", "", $htmlCode);
+
+        $cssCode->optimizeCode();
+        $css = $cssCode->sendOptimizedCodeToCache();
+
+        $htmlCode = preg_replace("%(</head>)%is", "<link rel=\"stylesheet\" href=\"$css\" type=\"text/css\" />$1",$htmlCode);
 
         return $htmlCode;
     }
@@ -64,7 +115,8 @@ class CI_HtmlCode extends CI_Code{
 //                                  CI_Log :: write_dump($this->textAreaStore, "HtmlCode :: afterOptimize");  
         return $htmlCode;
     }
- 
+
+    
     /**
      * Извлекает все комментарии в css файле, включая конструкции data-uri,
      * во временное хранилище
