@@ -2,3 +2,4 @@
 logs/*.*
 test/
 *.*.swp
+phpdoc/
