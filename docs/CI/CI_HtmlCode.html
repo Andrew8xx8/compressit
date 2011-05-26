@@ -1,0 +1,896 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Docs For Class CI_HtmlCode</title>
+	<link rel="stylesheet" type="text/css" href="../media/style.css">
+	<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+	<td class="header-top-left"><img src="../media/logo.png" border="0" alt="phpDocumentor " /></td>
+    <td class="header-top-right">CI<br /><div class="header-top-right-subpackage"></div></td>
+  </tr>
+  <tr><td colspan="2" class="header-line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td colspan="2" class="header-menu">
+      
+                                      
+                      		[ <a href="../classtrees_CI.html" class="menu">class tree: CI</a> ]
+		[ <a href="../elementindex_CI.html" class="menu">index: CI</a> ]
+            [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td colspan="2" class="header-line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="195" class="menu">
+		<div class="package-title">CI</div>
+      <b>Packages:</b><br />
+  <div class="package">
+              <a href="../li_default.html">default</a><br />
+              <a href="../li_CI.html">CI</a><br />
+      	</div>
+      <br />
+                        <b>Files:</b><br />
+        <div class="package">
+				<span style="padding-left: 1em;"><a href="../CI/_Cache.php.html">Cache.php</a></span><br />
+			<span style="padding-left: 1em;"><a href="../CI/_Code.php.html">Code.php</a></span><br />
+			<span style="padding-left: 1em;"><a href="../CI/_CssCode.php.html">CssCode.php</a></span><br />
+			<span style="padding-left: 1em;"><a href="../CI/_CssNormalizer.php.html">CssNormalizer.php</a></span><br />
+			<span style="padding-left: 1em;"><a href="../CI/_FileReader.php.html">FileReader.php</a></span><br />
+			<span style="padding-left: 1em;"><a href="../CI/_HtmlCode.php.html">HtmlCode.php</a></span><br />
+			<span style="padding-left: 1em;"><a href="../CI/_JsCode.php.html">JsCode.php</a></span><br />
+			<span style="padding-left: 1em;"><a href="../CI/_Log.php.html">Log.php</a></span><br />
+			<span style="padding-left: 1em;"><a href="../CI/_Normalizer.php.html">Normalizer.php</a></span><br />
+			<span style="padding-left: 1em;"><a href="../CI/_Optimizer.php.html">Optimizer.php</a></span><br />
+	  </div>
+            <br />
+                  <b>Classes:</b><br />
+        <div class="package">
+		    		<a href="../CI/CI_Cache.html">CI_Cache</a>    	 <br />
+	    		<a href="../CI/CI_Code.html">CI_Code</a>    	 <br />
+	    		<a href="../CI/CI_CssCode.html">CI_CssCode</a>    	 <br />
+	    		<a href="../CI/CI_CssNormalizer.html">CI_CssNormalizer</a>    	 <br />
+	    		<a href="../CI/CI_CssOptimizer.html">CI_CssOptimizer</a>    	 <br />
+	    		<a href="../CI/CI_FileReader.html">CI_FileReader</a>    	 <br />
+	    		<a href="../CI/CI_HtmlCode.html">CI_HtmlCode</a>    	 <br />
+	    		<a href="../CI/CI_HtmlNormalizer.html">CI_HtmlNormalizer</a>    	 <br />
+	    		<a href="../CI/CI_HtmlOptimizer.html">CI_HtmlOptimizer</a>    	 <br />
+	    		<a href="../CI/CI_JsCode.html">CI_JsCode</a>    	 <br />
+	    		<a href="../CI/CI_JsNormalizer.html">CI_JsNormalizer</a>    	 <br />
+	    		<a href="../CI/CI_JsOptimizer.html">CI_JsOptimizer</a>    	 <br />
+	    		<a href="../CI/CI_Log.html">CI_Log</a>    	 <br />
+	    		<a href="../CI/CI_Normalizer.html">CI_Normalizer</a>    	 <br />
+	    		<a href="../CI/CI_Optimizer.html">CI_Optimizer</a>    	 <br />
+	  </div>
+                </td>
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<h1>Class: CI_HtmlCode</h1>
+Source Location: /HtmlCode.php<br /><br />
+
+<h2 class="class-name">Class CI_HtmlCode</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Class Overview</div>
+	<div class="nav-bar">
+					<span class="disabled">Class Overview</span>
+						
+					| <a href="#sec-inherited">Inherited Properties, Constants, and Methods</a>
+											| <a href="#sec-vars">Properties</a>
+														| <a href="#sec-method-summary">Method Summary</a> | <a href="#sec-methods">Methods Detail</a>
+								</div>
+	<div class="info-box-body">
+		<table width="100%" border="0">
+		<tr><td valign="top" width="60%" class="class-overview">
+
+        		<p align="center" class="short-description"><strong>Реализация абстрактой фабрики <a href="../CI/CI_Code.html">CI_Code</a> для обработки HTML кода.
+</strong></p>
+
+		<p class="notes">
+			Located in <a class="field" href="_HtmlCode.php.html">/HtmlCode.php</a> [<span class="field">line 23</span>]
+		</p>
+
+		
+		<pre><a href="../CI/CI_Cache.html">CI_Cache</a>
+   |
+   --<a href="../CI/CI_Code.html">CI_Code</a>
+      |
+      --CI_HtmlCode</pre>
+
+		
+				<strong>Author(s):</strong>
+		<ul>
+		  			 			 <li>Andrew Kulakov &lt;<a href="mailto:avk@8xx8.ru">avk@8xx8.ru</a>&gt;</li>
+			 		  			 		  			 		  		</ul>
+		
+		
+<strong>Information Tags:</strong><br />
+<table border="0" cellspacing="0" cellpadding="0">
+				<tr><td><strong>Version:</strong>&nbsp;&nbsp;</td><td>1.0.0</td></tr>
+				<tr><td><strong>Copyright:</strong>&nbsp;&nbsp;</td><td>Andrew Kulakov (c) 2011</td></tr>
+	</table>
+		</td>
+
+		
+				<td valign="top" width="20%" class="class-overview">
+		<p align="center" class="short-description"><strong><a href="#sec_methods">Methods</a></strong></p>
+		<ul>
+		  		  <li><a href="../CI/CI_HtmlCode.html#method__construct">__construct</a></li>
+		  		  <li><a href="../CI/CI_HtmlCode.html#methodafterOptimize">afterOptimize</a></li>
+		  		  <li><a href="../CI/CI_HtmlCode.html#methodbeforeOptimize">beforeOptimize</a></li>
+		  		  <li><a href="../CI/CI_HtmlCode.html#methodgetNormalizer">getNormalizer</a></li>
+		  		  <li><a href="../CI/CI_HtmlCode.html#methodgetOptimizer">getOptimizer</a></li>
+		  		  <li><a href="../CI/CI_HtmlCode.html#methodgetType">getType</a></li>
+		  		  <li><a href="../CI/CI_HtmlCode.html#methodpopComments">popComments</a></li>
+		  		  <li><a href="../CI/CI_HtmlCode.html#methodpushComments">pushComments</a></li>
+		  		</ul>
+		</td>
+		
+		</tr></table>
+		<div class="top">[ <a href="#top">Top</a> ]</div>
+	</div>
+</div>
+
+
+	<a name="sec-inherited"></a>
+	<div class="info-box">
+		<div class="info-box-title">Inherited Properties, Constants, and Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Class Overview</a>
+						| <span class="disabled">Inherited Properties, Constants, and Methods</span>
+												| <a href="#sec-vars">Properties</a>
+																			| <a href="#sec-method-summary">Method Summary</a> | <a href="#sec-methods">Methods Detail</a>
+							    				</div>
+		<div class="info-box-body">
+			<table cellpadding="2" cellspacing="0" class="class-table">
+				<tr>
+					<th class="class-table-header" width="30%">Inherited Properties</th>
+					<th class="class-table-header" width="40%">Inherited Methods</th>
+					<th class="class-table-header" width="30%">Inherited Constants</th>
+				</tr>
+				<tr>
+					<td width="30%">
+													<p>Inherited From <span class="classname"><a href="../CI/CI_Code.html">CI_Code</a></span></p>
+							<blockquote>
+								<dl>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Code.html#var$commentStore">CI_Code::$commentStore</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition"></span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Code.html#var$delComments">CI_Code::$delComments</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition"></span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Code.html#var$optimizedCode">CI_Code::$optimizedCode</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition"></span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Code.html#var$sizeAfter">CI_Code::$sizeAfter</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition"></span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Code.html#var$sizeBefore">CI_Code::$sizeBefore</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition"></span>
+										</dd>
+																	</dl>
+							</blockquote>
+													<p>Inherited From <span class="classname"><a href="../CI/CI_Cache.html">CI_Cache</a></span></p>
+							<blockquote>
+								<dl>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Cache.html#var$sourceCode">CI_Cache::$sourceCode</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition"></span>
+										</dd>
+																	</dl>
+							</blockquote>
+											</td>
+					<td width="40%">
+													<p>Inherited From <span class="classname"><a href="../CI/CI_Code.html">CI_Code</a></span></p>
+							<blockquote>
+								<dl>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Code.html#methodafterOptimize">CI_Code::afterOptimize()</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition">Функция обрабатывающая оптимизированный код после применения нормализатора и оптимизатора</span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Code.html#methodbeforeOptimize">CI_Code::beforeOptimize()</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition">Функция обрабатывающая исходный код перед применением нормализатора и оптимизатора</span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Code.html#methoddisplayOptimizedCode">CI_Code::displayOptimizedCode()</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition">Выводит оптимизируемый код</span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Code.html#methodgetNormalizer">CI_Code::getNormalizer()</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition">Возвращает класс - провайдер функций для нормализации кода</span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Code.html#methodgetOptimizedCode">CI_Code::getOptimizedCode()</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition">Возвращает оптимизированный код</span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Code.html#methodgetOptimizer">CI_Code::getOptimizer()</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition">Возвращает класс - провайдер функций для оптимизации кода</span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Code.html#methodgetPercent">CI_Code::getPercent()</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition">Возвращает процент сжатия</span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Code.html#methodgetSizeAfter">CI_Code::getSizeAfter()</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition">Возвращает размер кода в символах после обработки</span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Code.html#methodgetSizeBefore">CI_Code::getSizeBefore()</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition">Возвращает размер кода в символах до обработки</span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Code.html#methodgetType">CI_Code::getType()</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition">Возвращает тип файла: css, js, html</span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Code.html#methodoptimizeCode">CI_Code::optimizeCode()</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition">Реализует общую лугику обработки любого кода системой.</span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Code.html#methodpopComments">CI_Code::popComments()</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition">Извлекает все комментарии в коде  во временное хранилище</span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Code.html#methodpopData">CI_Code::popData()</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition">Заменяет все все вхождения регулярного выражения $popPattern на &quot;-+=&quot;.$pushPattern.Счётчик.&quot;=+-&quot;  сохраняя заменённые данные в массив $store.</span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Code.html#methodpushComments">CI_Code::pushComments()</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition">Извлекает все комментарии в коде  во временное хранилище</span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Code.html#methodpushData">CI_Code::pushData()</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition">Заменяет все все вхождения &quot;-+=&quot;.$pushPattern.Счётчик.&quot;=+-&quot; на соответствующую счётчику запись в хранилище $store.</span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Code.html#methodsendOptimizedCodeToCache">CI_Code::sendOptimizedCodeToCache()</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition">Отправляет код во временное хранилище.</span>
+										</dd>
+																	</dl>
+							</blockquote>
+													<p>Inherited From <span class="classname"><a href="../CI/CI_Cache.html">CI_Cache</a></span></p>
+							<blockquote>
+								<dl>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Cache.html#method__construct">CI_Cache::__construct()</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition">Конструктор.</span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Cache.html#methodaddCode">CI_Cache::addCode()</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition">Добавляет код</span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Cache.html#methodaddFile">CI_Cache::addFile()</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition">Добавляет код из файла</span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Cache.html#methodgetCodeFromCache">CI_Cache::getCodeFromCache()</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition">Возвращает код из кэша</span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Cache.html#methodisNeedUpdate">CI_Cache::isNeedUpdate()</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition">Возвращает true если оптимизированного кода из переменной $sourceCode в кэше</span>
+										</dd>
+																			<dt>
+											<span class="method-definition"><a href="../CI/CI_Cache.html#methodsetCodeToCache">CI_Cache::setCodeToCache()</a></span>
+										</dt>
+										<dd>
+											<span class="method-definition">Поместить  код во временное хранилище</span>
+										</dd>
+																	</dl>
+							</blockquote>
+											</td>
+					<td width="30%">
+											</td>
+				</tr>
+			</table>
+			<br /><div class="top">[ <a href="#top">Top</a> ]</div>
+		</div>
+	</div>
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Class Overview</a>
+										| <a href="#sec-inherited">Inherited Properties and Methods</a>
+															| <a href="#sec-vars">Properties</a>
+							    					| <span class="disabled">Method Summary</span> | <a href="#sec-methods">Methods Detail</a>
+		</div>
+		<div class="info-box-body">
+			<div class="method-summary">
+				<table border="0" cellspacing="0" cellpadding="0" class="method-summary">
+																																																																																<div class="method-definition">
+											<tr><td class="method-definition"><span class="method-result">CI_HtmlCode</span>&nbsp;&nbsp;</td>
+										<td class="method-definition"><a href="#__construct" title="details" class="method-name">__construct</a>()&nbsp;&nbsp;</td>
+					<td class="method-definition">Конструктор класса</td></tr>
+				</div>
+																<div class="method-definition">
+											<tr><td class="method-definition"><span class="method-result">string</span>&nbsp;&nbsp;</td>
+										<td class="method-definition"><a href="#afterOptimize" title="details" class="method-name">afterOptimize</a>()&nbsp;&nbsp;</td>
+					<td class="method-definition">Функция обрабатывающая оптимизированный код после применения нормализатора и оптимизатора</td></tr>
+				</div>
+																<div class="method-definition">
+											<tr><td class="method-definition"><span class="method-result">string</span>&nbsp;&nbsp;</td>
+										<td class="method-definition"><a href="#beforeOptimize" title="details" class="method-name">beforeOptimize</a>()&nbsp;&nbsp;</td>
+					<td class="method-definition">Функция обрабатывающая исходный код перед применением нормализатора и оптимизатора</td></tr>
+				</div>
+																<div class="method-definition">
+											<tr><td class="method-definition"><span class="method-result">Normalizer</span>&nbsp;&nbsp;</td>
+										<td class="method-definition"><a href="#getNormalizer" title="details" class="method-name">getNormalizer</a>()&nbsp;&nbsp;</td>
+					<td class="method-definition">Возвращает класс - провайдер функций для нормализации кода</td></tr>
+				</div>
+																<div class="method-definition">
+											<tr><td class="method-definition"><span class="method-result">Optimizer</span>&nbsp;&nbsp;</td>
+										<td class="method-definition"><a href="#getOptimizer" title="details" class="method-name">getOptimizer</a>()&nbsp;&nbsp;</td>
+					<td class="method-definition">Возвращает класс - провайдер функций для оптимизации кода</td></tr>
+				</div>
+																<div class="method-definition">
+											<tr><td class="method-definition"><span class="method-result">string</span>&nbsp;&nbsp;</td>
+										<td class="method-definition"><a href="#getType" title="details" class="method-name">getType</a>()&nbsp;&nbsp;</td>
+					<td class="method-definition">Возвращает тип файла: css, js, html</td></tr>
+				</div>
+																<div class="method-definition">
+											<tr><td class="method-definition"><span class="method-result">string</span>&nbsp;&nbsp;</td>
+										<td class="method-definition"><a href="#popComments" title="details" class="method-name">popComments</a>()&nbsp;&nbsp;</td>
+					<td class="method-definition">Извлекает все комментарии в коде  во временное хранилище</td></tr>
+				</div>
+																<div class="method-definition">
+											<tr><td class="method-definition"><span class="method-result">string</span>&nbsp;&nbsp;</td>
+										<td class="method-definition"><a href="#pushComments" title="details" class="method-name">pushComments</a>()&nbsp;&nbsp;</td>
+					<td class="method-definition">Извлекает все комментарии в коде  во временное хранилище</td></tr>
+				</div>
+												</table>
+			</div>
+			<br /><div class="top">[ <a href="#top">Top</a> ]</div>
+		</div>
+	</div>
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Properties</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Class Overview</a>
+										| <a href="#sec-inherited">Inherited Properties and Methods</a>
+										| <a href="#sec-var-summary">Property Summary</a> | <span class="disabled">Properties Detail</span>
+															| <a href="#sec-method-summary">Method Summary</a> | <a href="#sec-methods">Methods Detail</a>
+												</div>
+		<div class="info-box-body">
+					</div>
+	</div>
+
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Class Overview</a>
+										| <a href="#sec-inherited">Inherited Properties and Methods</a>
+															| <a href="#sec-vars">Properties</a>
+																	| <a href="#sec-method-summary">Method Summary</a> | <span class="disabled">Methods Detail</span>
+					</div>
+		<div class="info-box-body">
+			<a name='method_detail'></a>
+
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="evenrow">
+
+<div class="method-header">
+	<span class="method-title">Constructor __construct</span>&nbsp;&nbsp;<span class="smalllinenumber">[line 50]</span>
+</div>
+<br />
+
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code-border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">&nbsp;
+		<code>CI_HtmlCode __construct(
+bool
+$noSpaces, bool
+$noComments&nbsp;
+)</code>
+    </td></tr></table>
+    </td></tr></table><br /></div>
+
+	<p align="center" class="short-description"><strong>Конструктор класса
+</strong></p>
+
+			<strong>Parameters:</strong><br />
+			<table border="0" cellspacing="0" cellpadding="0">
+					<tr><td class="indent">
+				<span class="var-type">bool</span>&nbsp;&nbsp;</td>
+				<td>
+				<span class="var-name">$noSpaces:&nbsp;</span></td>
+				<td>
+				<span class="var-description"> Удалить пробельные символы;</span>			</td></tr>
+					<tr><td class="indent">
+				<span class="var-type">bool</span>&nbsp;&nbsp;</td>
+				<td>
+				<span class="var-name">$noComments:&nbsp;</span></td>
+				<td>
+				<span class="var-description"> Удалить коментарии.</span>			</td></tr>
+				</table>
+
+	<br />
+	<strong>API Tags:</strong><br />
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="indent"><strong>Access:</strong>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+<br />
+
+
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../CI/CI_Cache.html#method__construct">CI_Cache::__construct()</a></dt>
+						<dd>Конструктор.</dd>
+					</dl>
+		
+		<br />
+	<div class="top">[ <a href="#top">Top</a> ]</div>
+</div>
+<a name="methodafterOptimize" id="afterOptimize"><!-- --></a>
+<div class="oddrow">
+
+<div class="method-header">
+	<span class="method-title">afterOptimize</span>&nbsp;&nbsp;<span class="smalllinenumber">[line 87]</span>
+</div>
+<br />
+
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code-border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">&nbsp;
+		<code>string afterOptimize(
+string
+$htmlCode&nbsp;
+)</code>
+    </td></tr></table>
+    </td></tr></table><br /></div>
+
+	<p align="center" class="short-description"><strong>Функция обрабатывающая оптимизированный код после применения нормализатора и оптимизатора
+</strong></p>
+
+			<strong>Parameters:</strong><br />
+			<table border="0" cellspacing="0" cellpadding="0">
+					<tr><td class="indent">
+				<span class="var-type">string</span>&nbsp;&nbsp;</td>
+				<td>
+				<span class="var-name">$htmlCode:&nbsp;</span></td>
+				<td>
+				<span class="var-description"> Код до обработки.</span>			</td></tr>
+				</table>
+
+	<br />
+	<strong>API Tags:</strong><br />
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="indent"><strong>Return:</strong>&nbsp;&nbsp;</td><td>Код после обработки.</td>
+  </tr>
+  <tr>
+    <td class="indent"><strong>Abstract:</strong>&nbsp;&nbsp;</td><td></td>
+  </tr>
+  <tr>
+    <td class="indent"><strong>Access:</strong>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+<br />
+
+
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../CI/CI_Code.html#methodafterOptimize">CI_Code::afterOptimize()</a></dt>
+						<dd>Функция обрабатывающая оптимизированный код после применения нормализатора и оптимизатора</dd>
+					</dl>
+		
+		<br />
+	<div class="top">[ <a href="#top">Top</a> ]</div>
+</div>
+<a name="methodbeforeOptimize" id="beforeOptimize"><!-- --></a>
+<div class="evenrow">
+
+<div class="method-header">
+	<span class="method-title">beforeOptimize</span>&nbsp;&nbsp;<span class="smalllinenumber">[line 70]</span>
+</div>
+<br />
+
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code-border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">&nbsp;
+		<code>string beforeOptimize(
+string
+$htmlCode&nbsp;
+)</code>
+    </td></tr></table>
+    </td></tr></table><br /></div>
+
+	<p align="center" class="short-description"><strong>Функция обрабатывающая исходный код перед применением нормализатора и оптимизатора
+</strong></p>
+
+			<strong>Parameters:</strong><br />
+			<table border="0" cellspacing="0" cellpadding="0">
+					<tr><td class="indent">
+				<span class="var-type">string</span>&nbsp;&nbsp;</td>
+				<td>
+				<span class="var-name">$htmlCode:&nbsp;</span></td>
+				<td>
+				<span class="var-description"> Код до обработки.</span>			</td></tr>
+				</table>
+
+	<br />
+	<strong>API Tags:</strong><br />
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="indent"><strong>Return:</strong>&nbsp;&nbsp;</td><td>Код после обработки.</td>
+  </tr>
+  <tr>
+    <td class="indent"><strong>Abstract:</strong>&nbsp;&nbsp;</td><td></td>
+  </tr>
+  <tr>
+    <td class="indent"><strong>Access:</strong>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+<br />
+
+
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../CI/CI_Code.html#methodbeforeOptimize">CI_Code::beforeOptimize()</a></dt>
+						<dd>Функция обрабатывающая исходный код перед применением нормализатора и оптимизатора</dd>
+					</dl>
+		
+		<br />
+	<div class="top">[ <a href="#top">Top</a> ]</div>
+</div>
+<a name="methodgetNormalizer" id="getNormalizer"><!-- --></a>
+<div class="oddrow">
+
+<div class="method-header">
+	<span class="method-title">getNormalizer</span>&nbsp;&nbsp;<span class="smalllinenumber">[line 146]</span>
+</div>
+<br />
+
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code-border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">&nbsp;
+		<code>Normalizer getNormalizer(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br /></div>
+
+	<p align="center" class="short-description"><strong>Возвращает класс - провайдер функций для нормализации кода
+</strong></p>
+
+	<br />
+	<strong>API Tags:</strong><br />
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="indent"><strong>Abstract:</strong>&nbsp;&nbsp;</td><td></td>
+  </tr>
+  <tr>
+    <td class="indent"><strong>Access:</strong>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+<br />
+
+
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../CI/CI_Code.html#methodgetNormalizer">CI_Code::getNormalizer()</a></dt>
+						<dd>Возвращает класс - провайдер функций для нормализации кода</dd>
+					</dl>
+		
+		<br />
+	<div class="top">[ <a href="#top">Top</a> ]</div>
+</div>
+<a name="methodgetOptimizer" id="getOptimizer"><!-- --></a>
+<div class="evenrow">
+
+<div class="method-header">
+	<span class="method-title">getOptimizer</span>&nbsp;&nbsp;<span class="smalllinenumber">[line 135]</span>
+</div>
+<br />
+
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code-border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">&nbsp;
+		<code>Optimizer getOptimizer(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br /></div>
+
+	<p align="center" class="short-description"><strong>Возвращает класс - провайдер функций для оптимизации кода
+</strong></p>
+
+	<br />
+	<strong>API Tags:</strong><br />
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="indent"><strong>Abstract:</strong>&nbsp;&nbsp;</td><td></td>
+  </tr>
+  <tr>
+    <td class="indent"><strong>Access:</strong>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+<br />
+
+
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../CI/CI_Code.html#methodgetOptimizer">CI_Code::getOptimizer()</a></dt>
+						<dd>Возвращает класс - провайдер функций для оптимизации кода</dd>
+					</dl>
+		
+		<br />
+	<div class="top">[ <a href="#top">Top</a> ]</div>
+</div>
+<a name="methodgetType" id="getType"><!-- --></a>
+<div class="oddrow">
+
+<div class="method-header">
+	<span class="method-title">getType</span>&nbsp;&nbsp;<span class="smalllinenumber">[line 60]</span>
+</div>
+<br />
+
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code-border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">&nbsp;
+		<code>string getType(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br /></div>
+
+	<p align="center" class="short-description"><strong>Возвращает тип файла: css, js, html
+</strong></p>
+
+	<br />
+	<strong>API Tags:</strong><br />
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="indent"><strong>Return:</strong>&nbsp;&nbsp;</td><td>тип файла.</td>
+  </tr>
+  <tr>
+    <td class="indent"><strong>Abstract:</strong>&nbsp;&nbsp;</td><td></td>
+  </tr>
+  <tr>
+    <td class="indent"><strong>Access:</strong>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+<br />
+
+
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../CI/CI_Code.html#methodgetType">CI_Code::getType()</a></dt>
+						<dd>Возвращает тип файла: css, js, html</dd>
+					</dl>
+		
+		<br />
+	<div class="top">[ <a href="#top">Top</a> ]</div>
+</div>
+<a name="methodpopComments" id="popComments"><!-- --></a>
+<div class="evenrow">
+
+<div class="method-header">
+	<span class="method-title">popComments</span>&nbsp;&nbsp;<span class="smalllinenumber">[line 104]</span>
+</div>
+<br />
+
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code-border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">&nbsp;
+		<code>string popComments(
+string
+$htmlCode, 
+&$store, array
+$store&nbsp;
+)</code>
+    </td></tr></table>
+    </td></tr></table><br /></div>
+
+	<p align="center" class="short-description"><strong>Извлекает все комментарии в коде  во временное хранилище
+</strong></p>
+
+			<strong>Parameters:</strong><br />
+			<table border="0" cellspacing="0" cellpadding="0">
+					<tr><td class="indent">
+				<span class="var-type">string</span>&nbsp;&nbsp;</td>
+				<td>
+				<span class="var-name">$htmlCode:&nbsp;</span></td>
+				<td>
+				<span class="var-description"> Код с комментариями;</span>			</td></tr>
+					<tr><td class="indent">
+				<span class="var-type">array</span>&nbsp;&nbsp;</td>
+				<td>
+				<span class="var-name">$store:&nbsp;</span></td>
+				<td>
+				<span class="var-description"> Временное хранилище.</span>			</td></tr>
+					<tr><td class="indent">
+				<span class="var-type"></span>&nbsp;&nbsp;</td>
+				<td>
+				<span class="var-name">&$store:&nbsp;</span></td>
+				<td>
+							</td></tr>
+				</table>
+
+	<br />
+	<strong>API Tags:</strong><br />
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="indent"><strong>Return:</strong>&nbsp;&nbsp;</td><td>Код без комментариев.</td>
+  </tr>
+  <tr>
+    <td class="indent"><strong>Access:</strong>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+<br />
+
+
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../CI/CI_Code.html#methodpopComments">CI_Code::popComments()</a></dt>
+						<dd>Извлекает все комментарии в коде  во временное хранилище</dd>
+					</dl>
+		
+		<br />
+	<div class="top">[ <a href="#top">Top</a> ]</div>
+</div>
+<a name="methodpushComments" id="pushComments"><!-- --></a>
+<div class="oddrow">
+
+<div class="method-header">
+	<span class="method-title">pushComments</span>&nbsp;&nbsp;<span class="smalllinenumber">[line 116]</span>
+</div>
+<br />
+
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code-border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">&nbsp;
+		<code>string pushComments(
+string
+$htmlCode, 
+&$store, array
+$store&nbsp;
+)</code>
+    </td></tr></table>
+    </td></tr></table><br /></div>
+
+	<p align="center" class="short-description"><strong>Извлекает все комментарии в коде  во временное хранилище
+</strong></p>
+
+			<strong>Parameters:</strong><br />
+			<table border="0" cellspacing="0" cellpadding="0">
+					<tr><td class="indent">
+				<span class="var-type">string</span>&nbsp;&nbsp;</td>
+				<td>
+				<span class="var-name">$htmlCode:&nbsp;</span></td>
+				<td>
+				<span class="var-description"> Код с комментариями;</span>			</td></tr>
+					<tr><td class="indent">
+				<span class="var-type">array</span>&nbsp;&nbsp;</td>
+				<td>
+				<span class="var-name">$store:&nbsp;</span></td>
+				<td>
+				<span class="var-description"> Временное хранилище.</span>			</td></tr>
+					<tr><td class="indent">
+				<span class="var-type"></span>&nbsp;&nbsp;</td>
+				<td>
+				<span class="var-name">&$store:&nbsp;</span></td>
+				<td>
+							</td></tr>
+				</table>
+
+	<br />
+	<strong>API Tags:</strong><br />
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="indent"><strong>Return:</strong>&nbsp;&nbsp;</td><td>Код без комментариев.</td>
+  </tr>
+  <tr>
+    <td class="indent"><strong>Access:</strong>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+<br />
+
+
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../CI/CI_Code.html#methodpushComments">CI_Code::pushComments()</a></dt>
+						<dd>Извлекает все комментарии в коде  во временное хранилище</dd>
+					</dl>
+		
+		<br />
+	<div class="top">[ <a href="#top">Top</a> ]</div>
+</div>
+		</div>
+	</div>
+
+
+        <div class="credit">
+		    <hr class="separator" />
+		    Documentation generated on Thu, 26 May 2011 19:39:40 +0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
