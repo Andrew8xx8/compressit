@@ -24,7 +24,11 @@ class CI_CssCode extends CI_Code{
      * @var array Хранилище URL
      */
     private $urlStore = array();
-
+    /**
+     * @var bool Режим использования хака в CSS
+     */
+    private $_inHack = false;
+    
     /**
      * Конструктор класса. Осуществляет инициализацию параметров.
      * @param  boolean $delComments     Удалять ли коментарии?
@@ -80,10 +84,8 @@ class CI_CssCode extends CI_Code{
      * @return string         CSS код без URL
      */
     private function popUrl($cssCode){
-        preg_match_all("/url\s*\(.*\)/i", $cssCode, $this->urlStore);
-
-        for($i = 0; $i < count($this->urlStore[0]); $i++)
-            $cssCode = str_replace($this->urlStore[0][$i], "url(data-url$i)", $cssCode);
+        // Извлевкаем всё что относиться к url
+        $cssCode = $this->popData("#url\s*\(.*\)#i", "URL", $cssCode, $this->urlStore);
 
         return $cssCode;
     }
@@ -96,8 +98,7 @@ class CI_CssCode extends CI_Code{
      * @return string         CSS код с URL
      */
     private function pushUrl($cssCode){
-        for($i = 0; $i < count($this->urlStore[0]); $i++)
-            $cssCode = preg_replace("/url\(data-url$i\)(;|\n|\s)\s*/", $this->urlStore[0][$i], $cssCode);
+        $cssCode = $this->pushData("URL", $cssCode, $this->urlStore);
 
         return $cssCode;
     }
