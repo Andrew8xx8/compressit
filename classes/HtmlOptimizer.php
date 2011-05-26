@@ -35,8 +35,8 @@ class CI_HtmlOptimizer extends CI_Optimizer{
 		$this->htmlCode = $htmlCode;
 		
 		CI_Log::write("Optimize  HTML", "CI_HtmlOptimizer", CI_Log::INFO, 5);
-		$this->isXhtml = (false !== strpos($this->_html, '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML'));
-		if ($this->isXhtml ||1) {
+		$this->isXhtml = (false !== strpos($this->htmlCode, '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML'));
+		if ($this->isXhtml) {
 			$this->addSlashes();
 		}
 
