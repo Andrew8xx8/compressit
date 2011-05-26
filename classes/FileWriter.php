@@ -1,18 +1,29 @@
 <?php
 /**
- * Cache.php
- * Класс осуществляющий опрации чтения из файлов.
- *
- * Дата создания: 09.04.11
+ * Дата создания: 11.04.11
  *
  * @author Andrew Kulakov <avk@8xx8.ru>
  * @version
  * @copyright Andrew Kulakov (c) 2011
+ * @package CI
  */
 require_once("Log.php");
-
+/**
+ *  Класс осуществляющий опрации записи в файлы.
+ *
+ * @author Andrew Kulakov <avk@8xx8.ru>
+ * @version 1.0.0
+ * @copyright Andrew Kulakov (c) 2011
+ * @package CI
+ */
 class CI_FileWriter{
-
+    /**
+     * Записывает содержимое $contents в файл
+     * @static
+     * @param  string $filename Имя файла
+     * @param  string $contents Данные
+     * @return bool             Результат операции true: запись проведена  успешно, false: произошла ошибка
+     */
     public static function write($filename, $contents){
 
         $file = fopen($filename, "wt");
@@ -22,10 +33,17 @@ class CI_FileWriter{
             return true;
         } else {
             CI_Log :: write("Ошибка доступа к файлу ".$filename, "FileWriter.php");
-            die ("Ошибка доступа к файлу ".$filename);
+            return false;
         }
     }
 
+    /**
+     * Сжимаетпо алгоритму GNU ZIP и записывает содержимое $contents в файл
+     * @static
+     * @param  string $filename Имя файла
+     * @param  string $contents Данные
+     * @return bool             Результат операции true: запись проведена  успешно, false: произошла ошибка
+     */
     public static function writeGZ($filename, $contents){ 
         $file = fopen($filename, "wt");
         return false;

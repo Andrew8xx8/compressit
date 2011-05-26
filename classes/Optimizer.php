@@ -1,13 +1,27 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
- * User: Andrew8xx8
- * Date: 09.04.11
- * Time: 13:35
- * To change this template use File | Settings | File Templates.
+ * Дата создания: 15.04.11
+ *
+ * @author Andrew Kulakov <avk@8xx8.ru>
+ * @version 1.0.0
+ * @copyright Andrew Kulakov (c) 2011
+ * @package CI
  */
- 
+/**
+ * Абстрактный класс представляющий интерейс для оптимизации кода
+ *
+ * @author Andrew Kulakov <avk@8xx8.ru>
+ * @version 1.0.0
+ * @copyright Andrew Kulakov (c) 2011
+ * @package CI
+ */
 abstract class CI_Optimizer {
+    /**
+     * Функция оптимизации кода
+     * @abstract
+     * @param  string $code Код
+     * @return string       Код
+     */
     abstract function optimize($code);
 }
 ?>

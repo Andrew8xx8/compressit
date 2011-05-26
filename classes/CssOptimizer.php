@@ -7,10 +7,9 @@
  * @copyright ChaosLab
  */
 
-
 require_once("Optimizer.php");
 
-  function opMargin(&$itm){        
+function opMargin(&$itm){        
     //echo "<pre>";print_r($itm);		
 
 // Свёртка margin и padding
@@ -86,23 +85,15 @@ class CI_CssOptimizer extends CI_Optimizer{
      * @return string
      */
     public function optimize($cssCode){
-        return $cssCode;
-        /*
-         *
+        CI_Log::write("Optimize  CSS", "CI_CssOptimizer", CI_Log::INFO, 5);
+		
+        //return $cssCode;
 
-        // Заменяем коменты на пробел
-        if ($this->delComments)
-            $result = preg_replace("/\/\*.*?\*\//", "", $result);
-
-        $result = trim(preg_replace("/\s?;\s?/", ";", $result));
-
-        $css = $this->splitCSS($result);
+        //$cssCode = $this->splitCSS($cssCode);
       //  $cssOp = new CSSOptimize();
 //        $result = $cssOp->optimize($css);
 
-
-
-        return $css;*/
+        return $cssCode;
     }
 
 

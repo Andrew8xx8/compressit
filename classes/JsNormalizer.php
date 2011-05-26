@@ -1,19 +1,35 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
- * User: Andrew8xx8
- * Date: 10.04.11
- * Time: 23:19
- * To change this template use File | Settings | File Templates.
+ * Дата создания: 15.04.11
+ *
+ * @author Andrew Kulakov <avk@8xx8.ru>
+ * @version 1.0.0
+ * @copyright Andrew Kulakov (c) 2011
+ * @package CI
  */
 require_once ('Normalizer.php');
-
+/**
+ * Реализация класса для нормализации JavaScript кода
+ *
+ * @author Andrew Kulakov <avk@8xx8.ru>
+ * @version 1.0.0
+ * @copyright Andrew Kulakov (c) 2011
+ * @package CI
+ */
 class CI_JsNormalizer extends CI_Normalizer{
-    private function pattern($i) { 
-        return "[{COMPRESIT}={$i}={COMPRESIT}]"; 
-    } 
- 
+    /**
+     * @var string JavaScript код
+     */
+	private $jsCode;
+	    
+    /**
+     * Функция нормализации кода.
+     * @param  string $jsCode JavaScript Код
+     * @return string         JavaScript Код
+     */
     public function normalize($jsCode){
+		CI_Log::write("Normalize JS", "CI_JsNormalizer", CI_Log::INFO, 8);
+		
  /*       $jsCode = $this->removeCrlf($jsCode);
 
         // Экранируем спецсимволы, что бы не мешались  

@@ -1,46 +1,71 @@
 <?php 
 /**
- * HtmlCode.php Класс для сжатия HTML кода по средствам удаления лишних пробелов символов табуляции и переводов строк, а также блоков с комментариями (<!-- -->).
+ * Дата создания: 15.04.11
  *
- * @author    AndrewKvik
- * @version   0.1a
- * @copyright ChaosLab
+ * @author Andrew Kulakov <avk@8xx8.ru>
+ * @version 1.0.0
+ * @copyright Andrew Kulakov (c) 2011
+ * @package CI
  */
 
 require_once("Code.php");
 require_once("HtmlOptimizer.php");
 require_once("HtmlNormalizer.php");
 
-require_once('JsCode.php');
-require_once('CssCode.php');
-
+/**
+ * Реализация абстрактой фабрики {@link CI_Code} для обработки HTML кода.
+ *
+ * @author Andrew Kulakov <avk@8xx8.ru>
+ * @version 1.0.0
+ * @copyright Andrew Kulakov (c) 2011
+ * @package CI
+ */
 class CI_HtmlCode extends CI_Code{
-	 
-	private $noSpaces = true;  // Если true удаляет все лишние пробелы, табуляции и переводы строк
+	/**
+     * @var bool Удалить пробельные символы
+     */
+	private $noSpaces = true;
+    /**
+     * @var bool Удалить комментарии
+     */
 	private $noComments = true;  // Если true удаляет html комментарии (<!-- -->)
+    /**
+     * @var array Хранилище для содержимого элементов  pre
+     */
     private $preStore = array();
+    /**
+     * @var array Хранилище для содержимого тега code
+     */
     private $codeStore = array();
+    /**
+     * @var array Хранилище для содержимого тега textarea
+     */
     private $textAreaStore = array();
-
+    
+    /**
+     * Конструктор класса
+     * @param  bool $noSpaces    Удалить пробельные символы;
+     * @param  bool $noComments  Удалить коментарии.
+     */
 	public function __construct($noSpaces, $noComments){
-        $this->noSpaces = $noSpaces;
+		$this->noSpaces = $noSpaces;
         $this->noComments = $noComments;
     }
 
     /**
      * Возвращает тип файла: css, js, html
-     *
-     * @return string
+     * @abstract
+     * @return string тип файла.
      */
     public function getType(){
         return "html";
     }
 
     /**
-     * Функция преобработки
-     *
-     * @param  string $code
-     * @return string
+     * Функция обрабатывающая исходный код перед применением нормализатора и оптимизатора
+     * @abstract
+     * @param  string $htmlCode Код до обработки.
+     * @return string           Код после обработки.
      */
     public function beforeOptimize($htmlCode){
         // Извлевкаем всё что внутри тега <pre>
@@ -50,62 +75,14 @@ class CI_HtmlCode extends CI_Code{
         // Извлевкаем всё что внутри тега <pre>
         $htmlCode = $this->popData("%<textarea(.*?)>(.*?)</textarea>%Uis", "textareaTag", $htmlCode, $this->textAreaStore);
 
-        $htmlCode = $this->optimizeJs($htmlCode);
-
-        $htmlCode = $this->optimizeCss($htmlCode);
-
-        return $htmlCode;
-    }
-
-    private function optimizeJs($htmlCode){
-        $jsCode = new CI_JsCode(true, true);
-
-        preg_match_all("%<script.*?src=\"(.*?)\".*?>(.*?)</script>%is", $htmlCode, $jsScripts);
-        foreach($jsScripts[1] as $script)
-            $jsCode->addFile($script);
-        $htmlCode = preg_replace("%<script.*?src=\"(.*?)\".*?>(.*?)</script>%is", "", $htmlCode);
-
-        preg_match_all("%<script(.*?)>(.*?)</script>%is", $htmlCode, $jsScripts);
-        foreach($jsScripts[2] as $script)
-            $jsCode->addCode($script);
-        $htmlCode = preg_replace("%<script(.*?)>(.*?)</script>%is", "", $htmlCode);
-
-        $jsCode->optimizeCode();
-        $js = $jsCode->sendOptimizedCodeToCache();
-        $htmlCode = preg_replace("%(</head>)%is", "<script src=\"$js\"></script>$1",$htmlCode);
-        //$js =$jsCode->getOptimizedCode();
-
-        //$this->setCodeToCache($jsCode->getType(), $js);
-        
-        return $htmlCode;
-    }
-
-    private function optimizeCss($htmlCode){
-        $cssCode = new CI_CssCode(true, 0);
-
-        preg_match_all("%<style(.*?)>(.*?)</style>%is", $htmlCode, $cssStyles);
-        foreach($cssStyles[2] as $style)
-           $cssCode->addCode($style);
-        $htmlCode = preg_replace("%<style(.*?)>(.*?)</style>%is", "", $htmlCode);
-
-        preg_match_all("%<link.*?(href=\"(.*?)\")?.*?(rel=\"stylesheet\").*?(href=\"(.*?)\").*?>%is", $htmlCode, $cssStyles);
-        //foreach($cssStyles[5] as $style)
-//            $cssCode->addFile($style);
-        $htmlCode = preg_replace("%<link.*?rel=\"stylesheet\".*?>%is", "", $htmlCode);
-
-        $cssCode->optimizeCode();
-        $css = $cssCode->sendOptimizedCodeToCache();
-
-        $htmlCode = preg_replace("%(</head>)%is", "<link rel=\"stylesheet\" href=\"$css\" type=\"text/css\" />$1",$htmlCode);
-
         return $htmlCode;
     }
 
     /**
-     * Функция постобработки
-     *
-     * @param  string $code
-     * @return string
+     * Функция обрабатывающая оптимизированный код после применения нормализатора и оптимизатора
+     * @abstract
+     * @param  string $htmlCode Код до обработки.
+     * @return string           Код после обработки.
      */
     public function afterOptimize($htmlCode){
         $htmlCode = $this->pushData("preTag", $htmlCode, $this->preStore);      
@@ -116,24 +93,25 @@ class CI_HtmlCode extends CI_Code{
         return $htmlCode;
     }
 
-    
     /**
-     * Извлекает все комментарии в css файле, включая конструкции data-uri,
+     * Извлекает все комментарии в коде
      * во временное хранилище
      *
-     * @param string $cssCode
-     * @return string
+     * @param string $htmlCode   Код с комментариями;
+     * @param array  $store      Временное хранилище.
+     * @return string            Код без комментариев.
      */
     public function popComments($htmlCode, &$store){
         return $this->popData("/<!--([\\s\\S]*?)-->/i", "commentent", $htmlCode, $store);
     }
 
     /**
-     * Восстанавливает все вхождения URL в css файле, включая конструкции data-uri,
-     * из временного хранилища
+     * Извлекает все комментарии в коде
+     * во временное хранилище
      *
-     * @param string $cssCode
-     * @return string
+     * @param string $htmlCode   Код с комментариями;
+     * @param array  $store      Временное хранилище.
+     * @return string            Код без комментариев.
      */
     public function pushComments($htmlCode, &$store){
         for($i = 0; $i < count($store[0]); $i++)
@@ -148,50 +126,26 @@ class CI_HtmlCode extends CI_Code{
 
         return $htmlCode;
     }
-    
-	protected function compress($content){    
-		$result = "";
-		$f = true;
-		$not_pre_tag = true;
-		$tags = explode(" ", $content);
-		
-		foreach($tags as $tag){
-			if ($this->noComments && stripos($tag, "<!--") !== FALSE) $f = false;		
-			if (stripos($tag, "<pre>") !== FALSE) $not_pre_tag = false;
-			if ($f) {
-			  if ($not_pre_tag && $this->noSpaces) {
-					if($tag != "") {					  
-						$result .= trim(preg_replace("/[\s\t\n]+/", " ", $tag));
-						
-						if (substr($result, strlen($result)-1, 1) != ">")
-						  $result .= " ";
-					}
-				}
-				else $result .= " ".$tag;
-			}
-			if (stripos($tag, "</pre>") !== FALSE) $not_pre_tag = true;		
-		  if ($this->noComments && stripos($tag, "-->") !== FALSE) $f = true;
-		}    
-        $result = preg_replace("/>\s*</", "><", $result); 
-    //$result = preg_replace("/\s*\"\s*/", "\"", $result); 		
-		return $result;
-	}
 
-    /**
-     * Возвращает класс - провайер функций для оптимизации кода
+     /**
+     * Возвращает класс - провайдер функций для оптимизации кода
      * @abstract
      * @return Optimizer
      */
     public function getOptimizer(){
+		CI_Log::write("Get delegate class for HTML Optimizer", "CI_HtmlCode", CI_Log::INFO, 9);
+		
         return new CI_HtmlOptimizer();
     }
 
     /**
-     * Возвращает класс - провайер функций для нормализации кода
+     * Возвращает класс - провайдер функций для нормализации кода
      * @abstract
      * @return Normalizer
      */
     public function getNormalizer(){
+		CI_Log::write("Get delegate class for HTML Normalizer", "CI_HtmlCode", CI_Log::INFO, 9);
+		
         return new CI_HtmlNormalizer();
     }
 }

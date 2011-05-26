@@ -1,22 +1,42 @@
 <?php 
 /**
- * HtmlCode.php Класс для сжатия HTML кода по средствам удаления лишних пробелов символов табуляции и переводов строк, а также блоков с комментариями (<!-- -->).
+ * Дата создания: 09.04.11
  *
- * @author    AndrewKvik
- * @version   0.1a
- * @copyright ChaosLab
+ * @author Andrew Kulakov <avk@8xx8.ru>
+ * @version 1.0.0
+ * @copyright Andrew Kulakov (c) 2011
+ * @package CI
  */
-
 require_once("Code.php");
 require_once("JsOptimizer.php");
 require_once("JsNormalizer.php");
-
+/**
+ * Реализация абстрактой фабрики {@link CI_Code} для обработки JavaScript кода.
+ *
+ * @author Andrew Kulakov <avk@8xx8.ru>
+ * @version 1.0.0
+ * @copyright Andrew Kulakov (c) 2011
+ * @package CI
+ */
 class CI_JsCode extends CI_Code{
-	
-	private $noSpaces = true;  // Если true удаляет все лишние пробелы, табуляции и переводы строк
-	private $noComments = true;  // Если true удаляет html комментарии (<!-- -->)
+	/**
+     * @var bool Удалить пробельные символы
+     */
+	private $noSpaces = true;
+    /**
+     * @var bool Удалить комментарии
+     */
+	private $noComments = true;
+     /**
+     * @var array Хранилище для содержимого строк
+     */
     private $stringStore = array();
 
+    /**
+     * Конструктор класса
+     * @param  bool $noSpaces    Удалить пробельные символы;
+     * @param  bool $noComments  Удалить коментарии.
+     */
 	public function __construct($noSpaces, $noComments){
         $this->noSpaces = $noSpaces;
         $this->noComments = $noComments;
@@ -24,73 +44,76 @@ class CI_JsCode extends CI_Code{
 
     /**
      * Возвращает тип файла: css, js, html
-     *
-     * @return string
+     * @abstract
+     * @return string тип файла.
      */
     public function getType(){
         return "js";
     }
 
     /**
-     * Функция преобработки
-     *
-     * @param  string $code
-     * @return string
+     * Функция обрабатывающая исходный код перед применением нормализатора и оптимизатора
+     * @abstract
+     * @param  string $jsCode Код до обработки.
+     * @return string         Код после обработки.
      */
-    public function beforeOptimize($htmlCode){
-
-        return $htmlCode;
+    public function beforeOptimize($jsCode){
+        return $jsCode;
     }
 
     /**
-     * Функция постобработки
-     *
-     * @param  string $code
-     * @return string
+     * Функция обрабатывающая оптимизированный код после применения нормализатора и оптимизатора
+     * @abstract
+     * @param  string $jsCode Код до обработки.
+     * @return string         Код после обработки.
      */
-    public function afterOptimize($htmlCode){
-
-//                                  CI_Log :: write_dump($this->textAreaStore, "HtmlCode :: afterOptimize");  
-        return $htmlCode;
+    public function afterOptimize($jsCode){
+        return $jsCode;
     }
  
-    /**
-     * Извлекает все комментарии в css файле, включая конструкции data-uri,
+   /**
+     * Извлекает все комментарии в коде
      * во временное хранилище
      *
-     * @param string $cssCode
-     * @return string
+     * @param string $jsCode   Код с комментариями;
+     * @param array  $store    Временное хранилище.
+     * @return string          Код без комментариев.
      */
     public function popComments($jsCode, &$store){
         return $jsCode;
     }
 
     /**
-     * Восстанавливает все вхождения URL в css файле, включая конструкции data-uri,
-     * из временного хранилища
+     * Извлекает все комментарии в коде
+     * во временное хранилище
      *
-     * @param string $cssCode
-     * @return string
+     * @param string $jsCode   Код с комментариями;
+     * @param array  $store    Временное хранилище.
+     * @return string          Код без комментариев.
      */
     public function pushComments($jsCode, &$store){
         return $jsCode;            
     }
     
     /**
-     * Возвращает класс - провайер функций для оптимизации кода
+     * Возвращает класс - провайдер функций для оптимизации кода
      * @abstract
      * @return Optimizer
      */
     public function getOptimizer(){
+		CI_Log::write("Get delegate class for JS Optimizer", "CI_JsCode", CI_Log::INFO, 9);
+		
         return new CI_JsOptimizer();
     }
 
     /**
-     * Возвращает класс - провайер функций для нормализации кода
+     * Возвращает класс - провайдер функций для нормализации кода
      * @abstract
      * @return Normalizer
      */
     public function getNormalizer(){
+		CI_Log::write("Get delegate class for JS Normalizer", "CI_JsCode", CI_Log::INFO, 9);
+		
         return new CI_JsNormalizer();
     }
 }

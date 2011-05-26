@@ -1,26 +1,36 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
- * User: Andrew8xx8
- * Date: 09.04.11
- * Time: 0:05
- * To change this template use File | Settings | File Templates.
+ * Дата создания: 15.04.11
+ *
+ * @author Andrew Kulakov <avk@8xx8.ru>
+ * @version 1.0.0
+ * @copyright Andrew Kulakov (c) 2011
+ * @package CI
  */
- 
+/**
+ * Абстрактный класс представляющий интерейс для нормализации кода
+ *
+ * @author Andrew Kulakov <avk@8xx8.ru>
+ * @version 1.0.0
+ * @copyright Andrew Kulakov (c) 2011
+ * @package CI
+ */
 abstract class CI_Normalizer {
+    
     /**
-     * Заменяет в переданном файле перевод с троки с \r\n на \n
-     * @param  $cssCode
+     * Заменяет в переданном файле перевод с троки с CRLF(\r\n) на \n
+     * @param  string $code
      * @return mixed
      */
-    public function removeCrlf($cssCode){
-        return str_replace("\r\n", "\n", $cssCode);
+    public function removeCrlf($code){
+        return str_replace("\r\n", "\n", $code);
     }
 
     /**
+     * Функция нормализации кода
      * @abstract
-     * @param  $code
-     * @return void
+     * @param  string $code Код
+     * @return string       Код
      */
     abstract function normalize($code);
 }
