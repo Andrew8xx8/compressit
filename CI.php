@@ -121,7 +121,7 @@ class CI {
         if (ob_start("CI::run"))
             CI_Log::write("ob_start() success", "CI", CI_Log::INFO, 3);
         else
-            CI_Log::write("ob_start() fail, check settings", "CI", CI_Log::CI_LOG_ERROR, 0);
+            CI_Log::write("ob_start() fail, check settings", "CI", CI_Log::ERROR, 0);
     }
 
     /**
@@ -133,7 +133,7 @@ class CI {
         if (ob_end_flush())
             CI_Log::write("ob_end_flush() success", "CI", CI_Log::INFO, 3);
         else
-            CI_Log::write("ob_end_flush() fail, check settings", "CI", CI_Log::CI_LOG_ERROR, 0);
+            CI_Log::write("ob_end_flush() fail, check settings", "CI", CI_Log::ERROR, 0);
 		CI_Log::write("======== TIME LEFT: ".sprintf("%f", (float)(microtime() - START_TIME))." ========", "CI", CI_Log::NOTICE, 0);
 		CI_Log::write("========= STOP OPTIMIZER ============", "CI", CI_Log::INFO, 1);		
     }
