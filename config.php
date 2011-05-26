@@ -6,6 +6,7 @@ return array (
     'web_cache_dir' => "http://".$_SERVER['SERVER_NAME']."/compressit/test/cache",
     'logFile' => '../logs/main_log.txt',
 	'folder_delimiter' => '\\',
-	'logLevel' => 10
+	'logLevel' => 10,
+    'gzip' => false
 );
  

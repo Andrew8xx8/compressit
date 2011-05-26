@@ -44,16 +44,20 @@ class CI_FileWriter{
      * @param  string $contents Данные
      * @return bool             Результат операции true: запись проведена  успешно, false: произошла ошибка
      */
-    public static function writeGZ($filename, $contents){ 
-        $file = fopen($filename, "wt");
-        return false;
-        if ($file !== false){
-            fwrite($file, gzcompress ( $contents, 9 ));
-            fclose($file);
-            return true;
-        } else {
-            CI_Log :: write("Ошибка доступа к файлу ".$filename, "FileReader.php");
+    public static function writeGZ($filename, $contents){
+        $allowGZ = CI::getInstance()->getOption('gzip');
+        if ($allowGZ === true) {
+            $file = fopen($filename, "wt");
+
+            if ($file !== false){
+                fwrite($file, gzcompress ( $contents, 9 ));
+                fclose($file);
+                return true;
+            } else {
+                CI_Log :: write("Ошибка доступа к файлу ".$filename, "FileReader.php");
+                return false;
+            }
+        } else
             return false;
-        }
     }
 }
