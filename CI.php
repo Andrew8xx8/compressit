@@ -68,10 +68,10 @@ class CI {
     /**
      * Получает значение параметра
      * @param   string $key   Имя параметра
-     * @return  mixed         Значение параметра
+     * @return  mixed         Значение параметра,если параметра нет возвращает false
      */
     public function getOption($key){
-        return $this->props[$key];
+        return isset($this->props[$key]) ? $this->props[$key] : false;
     }
     
     /**
