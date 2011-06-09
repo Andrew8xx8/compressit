@@ -48,11 +48,8 @@ class CI_Cache {
      * @return void
      */
     public function addFile($filename){
-        $buffer =CI_FileReader::read($filename);
-        if ($buffer !== false)
-            $this->sourceCode .= $buffer;  
-        else 
-            return false;
+        $this->sourceCode .= CI_FileReader::read($filename);
+		CI_Log::write("Added file ".$filename." size: ".sizeof($this->sourceCode),"CI_Cache", CI_Log::INFO, 9);
     }
 
     /**

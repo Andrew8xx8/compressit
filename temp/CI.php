@@ -184,7 +184,6 @@ class CI {
 //		CI_Log::write_dump($cssStyles,"CI_Cache", CI_Log::INFO, 9);
         //		CI_Log::write(count($cssStyles[5]),"CI_Cache", CI_Log::INFO, 9);
 
-
         foreach($cssStyles[5] as $style)
             $cssCode->addFile($style);
         $htmlCode = preg_replace("%<link.*?rel=\"stylesheet\".*?>%is", "", $htmlCode);

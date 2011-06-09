@@ -78,7 +78,7 @@ function opMargin(&$itm){
 class CI_CssOptimizer extends CI_Optimizer{
     private $cssCode;
     private $cssArray;
-    private $charset;
+    
     public function __construct(){
         
     }
@@ -89,47 +89,27 @@ class CI_CssOptimizer extends CI_Optimizer{
     public function optimize($cssCode){
         CI_Log::write("Optimize  CSS", "CI_CssOptimizer", CI_Log::INFO, 5);
 		
-        $this->cssCode = $cssCode;
- 
-        $this->popAtCharset();
-//        $this->divByMedia();
-        $this->splitCSS();
-        print_r($this->cssArray);
+//        $this->cssCode = $cssCode;
+        //$this->divByMedia();
+        //$this->splitCSS();
+        //        print_r($this->cssArray);
         die;
         return $this->cssCode;
     }
 
-    protected function popAtCharset(){
-        preg_match_all("%@charset\s*?(\"|')(.*?)(\"|')\s*?;%is", $this->cssCode, $charsets);
-        $this->cssCode = preg_replace("%@charset(.*?);%is", "", $this->cssCode);
-        $this->charset = $charsets[2][0];
-    }
     protected function divByMedia(){
-
+        preg_match_all('@media\s+((all|aural|braille|handheld|print|projection|screen|tv),?)+\s*?{
+    }', $this->cssCodei, $medias);          
+        print_r($medias);
         
-        $rules = preg_replace("%( \{ (?> [^}{]+ | (?R) )+ \} ) %xe", "'{'.md5('$0').'}'", $this->cssCode);
-
-        //preg_match_all("%(.*?){(\S*?)}%", $rules, $media);       
-        preg_match_all("%([^{^}^;^:]*?){([^{^}]*?)}%", $this->cssCode, $rules);         
-//        $this->cssCode = preg_replace("%{([^{^}]*?)}%ise", "'RULE'.md5('\1').'|'",$this->cssCode);     
-                                     print_r($rules);
-die;
-        $this->cssArray = Array();
-        foreach($rules[1] as $rule){
-       //     $descr = $this->splitDescriptor($rule); i
-        //    $this->cssArray[]$descr['hash'] = RULE;
-            print_r($descr);
-        }
     }
 
     protected function splitCSS() {
-        preg_match_all("%([^{^}^;^:]*?){([^{^}]*?)}%is", $this->cssCode, $pairs);
+        preg_match_all("/(.*?){(.*?)}/", $this->cssCode, $pairs);
         $result = Array();
         $count = count($pairs[1]);
         for($i = 0; $i < $count; $i++){
-echo "----------------------------------------------".$pairs[1][$i]."\n"; 
             $descr = $this->splitDescriptor($pairs[2][$i]);
-            $descr = $this->optimizeBox($descr);
             foreach($this->splitSelector($pairs[1][$i]) as $sel){
                 $result[] = Array ('selector' => $sel, 'descr' => $descr, 'rate' => $i);
             }
@@ -212,38 +192,14 @@ echo "----------------------------------------------".$pairs[1][$i]."\n";
             // \/
             // Array ([0] => 12px/18px [1] => Verdana,sans-serif )
             $rule = preg_split('/ /', $pairs[2][$i], -1, PREG_SPLIT_NO_EMPTY);
-
             if (count($rule) == 1)
                 $result[$pairs[1][$i]] = $rule[0];
             else
-                $result[$pairs[1][$i]] = $rule; 
+                $result[$pairs[1][$i]] = $rule;
         }
         return $result;
     }
-
-    public function buildProperty($name, $value, $result, $i = 0){
-        $parts = explode("-", $name);
-        $str = '$result';
-        if ($parts[0] == '') $parts[0] = "vendor";           
-           foreach($parts as $part){
-                $str .= "['$part']";
-              }
-        eval($str.'["v"]=$value;');
-        eval($str.'["r"]=$i;'); 
-        return $result;             
-    }      
-
-    public function optimizeBox($properties){
-        print_r($properties);
-        $boxParams = Array("margin", "padding");
-        foreach ($boxParams as $param){
-            if (!isset($properties[$param])) continue;   
-            $_temp = "";
-
-        }
-        return $properties;
-    }
-
+  
   public function optimize1($css){
     $result = '';  
     array_walk(&$css, "opMargin");

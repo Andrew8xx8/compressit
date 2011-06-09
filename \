@@ -1,0 +1,32 @@
+// $Id: translate.js 11699 2011-05-05 12:06:32Z 8xx8 $
+//
+// Ajax functions 4 translate page
+//
+
+    function fn_add_language_update_state(){
+         alert("wqe");
+    }
+
+
+    function fn_translate_language_listen(){
+        test = "";
+        jQuery.ajaxRequest(fn_url(index_script + '?dispatch=tools.translate_table&is_ajax=1'), {
+            hidde: false,
+            method: 'get',
+            callback: function(msg){
+//                fn_translate_language_listen();
+                $('#translate_status').append(msg);
+            },
+            data: test
+        });
+alert(test);
+    }        
+    
+function fn_form_post_add_language_form(){
+    $('#content_add_language form').fadeOut(80);
+    
+    $('#content_add_language').append('<div id="translate_status"><!--translate_status--></div>');
+    $('#translate_status').append('<h3>Translating<span id="dots">...</span></h3>'); 
+   
+    fn_translate_language_listen();
+}

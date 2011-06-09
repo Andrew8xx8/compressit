@@ -21,13 +21,9 @@ require_once("CssNormalizer.php");
  */
 class CI_CssCode extends CI_Code{
     /**
-     * @var array хранилище url
+     * @var array Хранилище URL
      */
     private $urlStore = array();
-    /**
-     * @var array хранилище import
-     */
-    private $importStore = array(); 
     /**
      * @var bool Режим использования хака в CSS
      */
@@ -60,10 +56,7 @@ class CI_CssCode extends CI_Code{
     public function beforeOptimize($cssCode){
 		CI_Log::write("Before optimize", "CI_CssCode", CI_Log::INFO, 8);
 		
-        $cssCode = $this->popData("#url\s*\(.*\)#i", "URL", $cssCode, $this->urlStore);         
-
-        $cssCode = $this->popData("%@import(.*?);%i", "IMPORT", $cssCode, $this->importStore);       		
-
+        $cssCode = $this->popUrl($cssCode);        		
         return $cssCode;
     }
 
@@ -75,16 +68,40 @@ class CI_CssCode extends CI_Code{
      */
     public function afterOptimize($cssCode){
 		CI_Log::write("After optimize", "CI_CssCode", CI_Log::INFO, 8);
+        $cssCode = $this->pushUrl($cssCode);
 
-        $cssCode = $this->pushData("URL", $cssCode, $this->urlStore); 
-
-        $cssCode = $this->pushData("IMPORT", $cssCode, $this->importStore);       		
- 
         $cssCode = preg_replace("/:\s+/", ":", $cssCode);
         $cssCode = preg_replace("/\s+;\s+/", ";", $cssCode);
 
         return $cssCode;
     }
+
+    /**
+     * Извлекает все вхождения URL в css файле, включая конструкции data-uri,
+     * во временное хранилище
+     *
+     * @param string $cssCode CSS код с URL
+     * @return string         CSS код без URL
+     */
+    private function popUrl($cssCode){
+        // Извлевкаем всё что относиться к url
+        $cssCode = $this->popData("#url\s*\(.*\)#i", "URL", $cssCode, $this->urlStore);
+
+        return $cssCode;
+    }
+
+    /**
+     * Восстанавливает все вхождения URL в css файле, включая конструкции data-uri,
+     * из временного хранилища
+     *
+     * @param string $cssCode CSS код без URL
+     * @return string         CSS код с URL
+     */
+    private function pushUrl($cssCode){
+        $cssCode = $this->pushData("URL", $cssCode, $this->urlStore);
+
+        return $cssCode;
+w    }
 
     /**
      * Извлекает все комментарии в коде
@@ -230,6 +247,5 @@ class CI_CssCode extends CI_Code{
             ? ' '
             : '';
     }
-
 }
 ?>
